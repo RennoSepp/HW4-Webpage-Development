@@ -2,14 +2,14 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=>, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="/css/style.css">
 <title> Create a post</title>
 
 <body>
-    <h1>Create a post</h1>
     <%- include('./partials/navbar.ejs') %>
         <br>
-        <div class="create-post">
-            <form action="/posts" method="POST">
+        <div class="post">
+            <form action="/posts" method="POST" class="postForm">
                 <label for="id">Post ID:</label>
                 <input type="integer" id="id" name="id" required><br><br>
                 <label for="Date">Date:</label>
@@ -19,10 +19,11 @@
                 <label for="body">Body:</label>
                 <input type="character varying" id="body" name="body"></textarea><br><br>
                 <label for="likes">Likes:</label>
-                <input type="integer" id="likes" name="likes"><br><br>
+                <input type="integer" id="likes" name="likes"></textarea><br><br>
                 <button>Submit</button>
             </form>
         </div>
+        <div class="divider"></div>
         <%- include('./partials/footer.ejs') %>
 </body>
 

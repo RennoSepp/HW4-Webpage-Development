@@ -1,34 +1,46 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
     <title>Posts</title>
 </head>
 
 <body>
-    <h1>Posts page</h1>
     <%- include('./partials/navbar.ejs') %>
-        <div class="posts list">
-            <h2>All posts</h2>
-            <% if (posts.length > 0) { %>
-                <% posts.forEach(post => { %>
-                    <a class="singlepost" href="/singlepost/<%= post.id %>">
-                        <h3 class="title">
+        <% if (posts.length > 0) { %>
+            <% posts.forEach(post => { %>
+                <div class="post">
+                    <div class="post-heading" onclick="location.href='/singlepost/<%= post.id %>';">
+                        <img src="/images/Account2.png" alt="Account">
+                        <p>
                             <%= post.date %>
-                        </h3>
-                        <p class="body">
+                        </p>
+                    </div>
+                    <div class="post-content" onclick="location.href='/singlepost/<%= post.id %>';">
+                        <img src=<%=p ost.picture %> alt="Penguins">
+                        <p>
                             <%= post.body %>
                         </p>
-                    </a>
-                    <% }) %>
-                        <% } else { %>
-                            <p>You did not post anything...</p>
-                            <% } %>
-        </div>
-        <%- include('./partials/footer.ejs') %>
+                    </div>
+                    <div class="like-button">
+                        <input type="image" name="Like" src="/images/Like.png" alt="Like">
+                        <p class="likes">
+                            <%= post.likes %>
+                        </p>
+                    </div>
+                </div>
+                <% }) %>
+                    <% } else { %>
+                        <div class="noPosts">
+                            <p>You have no posts at the moment</p>
+                            <img src="/images/noPosts.png" alt="SadPenguin">
+                        </div>
+                        <% } %>
+
+                            <%- include('./partials/footer.ejs') %>
 </body>
 
 </html>

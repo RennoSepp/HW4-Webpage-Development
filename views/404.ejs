@@ -1,6 +1,7 @@
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,13 +10,14 @@
 
 
 <body>
-    <nav>
-        <a href="/"> Posts </a> |
-        <a href="/addnewpost"> Add new post </a>
-    </nav>
-    <footer class="footer">
-        <p>© WAD 2021 </p>
-    </footer>
+    <%- include('./partials/navbar.ejs') %>
+        <div class="post">
+            <div class="error404">
+                <p>Sorry! 404, this page is not found at the South Pole!</p>
+                <img src="/images/404.png" alt="404">
+            </div>
+        </div>
+        <%- include('./partials/footer.ejs') %>
 </body>
 
 </html>

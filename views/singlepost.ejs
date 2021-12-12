@@ -1,29 +1,44 @@
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style.css">
     <title>Single Post</title>
+
 </head>
 
 <body>
-    <h1>Single post page</h1>
     <%- include('./partials/navbar.ejs') %>
-        <div class="singlepost">
-            <h2>
-                <%= posts.date %>
-            </h2>
-            <div class="content">
-                <p>
-                    <%= posts.body %>
-                </p>
+        <div calss="main">
+            <div class="post">
+                <div class="post-heading">
+                    <img src="/images/Account2.png" alt="Account">
+                    <p>
+                        <%= posts.date %>
+                    </p>
+                </div>
+                <div class="post-content">
+                    <img src="/images/penguins.jpg" alt="Penguins">
+                    <p>
+                        <%= posts.body %>
+                    </p>
+                </div>
+                <div class="like-button">
+                    <input type="image" name="Like" src="/images/Like.png" alt="Like">
+                    <p class="likes">
+                        <%= posts.likes %>
+                    </p>
+                </div>
+                <form action="/posts" class="deleteButton">
+                    <input type="submit" value="Delete" class="delete" data-del="<%= posts.id %>" />
+                </form>
             </div>
-            <a class="delete" data-del="<%= posts.id %>">Delete</a>
         </div>
         <script>
-            const delreq = document.querySelector('a.delete');
+            const delreq = document.querySelector('input.delete');
             delreq.addEventListener('click', (e) => {
                 const endpoint = `/posts/${delreq.dataset.del}`;
                 fetch(endpoint, {
@@ -31,6 +46,7 @@
                 }).then(window.location.href = '/posts')
             });
         </script>
+
         <%- include('./partials/footer.ejs') %>
 </body>
 

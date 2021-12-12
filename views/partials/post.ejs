@@ -1,0 +1,20 @@
+<div class="post">
+    <div class="post-heading" onclick="location.href='/singlepost/<%= post.id %>';">
+        <img src="images/Account2.png" alt="Account">
+        <p>
+            <%= post.date %>
+        </p>
+    </div>
+    <div class="post-content" onclick="location.href='/singlepost/<%= post.id %>';">
+        <img src="/images/penguins.jpg" alt="Penguins">
+        <p>
+            <%= post.body %>
+        </p>
+    </div>
+    <div class="like-button">
+        <input type="image" name="Like" src="/images/Like.png" alt="Like">
+        <p class="likes">
+            <%= post.likes %>
+        </p>
+    </div>
+</div>
