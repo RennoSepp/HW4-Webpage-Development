@@ -5,14 +5,13 @@ const app = express();
 // register the ejs view engine
 app.set('view engine', 'ejs');
 //without this middleware, we cannot use data submitted by forms
+app.use("/public", express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
-app.use(express.static('Public'));
 app.listen(3000, () => {
     console.log("Server is listening to port 3000")
 });
-
 app.get('/', (req, res) => {
     res.render('posts');
 });
