@@ -21,14 +21,14 @@
                     </p>
                 </div>
                 <div class="post-content">
-                    <img src="/images/penguins.jpg" alt="Penguins">
+                    <img src=<%= posts.picture %> alt="Penguins">
                     <p>
                         <%= posts.body %>
                     </p>
                 </div>
                 <div class="like-button">
-                    <input type="image" name="Like" src="/images/Like.png" alt="Like">
-                    <p class="likes">
+                    <input type="image" onclick="addLike()" class="addLike" id="likebutton" name="Like" src="/images/Like.png" alt="Like" data-id="<%= posts.id %>">
+                    <p class="likes" id="likes">
                         <%= posts.likes %>
                     </p>
                 </div>
@@ -45,6 +45,19 @@
                     method: 'DELETE',
                 }).then(window.location.href = '/posts')
             });
+
+            function addLike() {
+                document.getElementById("likes").innerHTML++;
+
+                const add = document.querySelector('input.addLike');
+                const endpoint = `/singlepost/${add.dataset.id}`;
+                fetch(endpoint, {
+                        method: 'PUT',
+                });
+
+                document.getElementById("likebutton").disabled = true;
+            }
+
         </script>
 
         <%- include('./partials/footer.ejs') %>

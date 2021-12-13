@@ -9,38 +9,54 @@
 </head>
 
 <body>
-    <%- include('./partials/navbar.ejs') %>
-        <% if (posts.length > 0) { %>
-            <% posts.forEach(post => { %>
-                <div class="post">
-                    <div class="post-heading" onclick="location.href='/singlepost/<%= post.id %>';">
-                        <img src="/images/Account2.png" alt="Account">
-                        <p>
-                            <%= post.date %>
-                        </p>
-                    </div>
-                    <div class="post-content" onclick="location.href='/singlepost/<%= post.id %>';">
-                        <img src=<%=p ost.picture %> alt="Penguins">
-                        <p>
-                            <%= post.body %>
-                        </p>
-                    </div>
-                    <div class="like-button">
-                        <input type="image" name="Like" src="/images/Like.png" alt="Like">
-                        <p class="likes">
-                            <%= post.likes %>
-                        </p>
-                    </div>
-                </div>
-                <% }) %>
-                    <% } else { %>
-                        <div class="noPosts">
-                            <p>You have no posts at the moment</p>
-                            <img src="/images/noPosts.png" alt="SadPenguin">
-                        </div>
-                        <% } %>
+<%- include('./partials/navbar.ejs') %>
+<% if (posts.length > 0) { %>
+    <% posts.forEach(post => { %>
+        <div class="post">
+            <div class="post-heading" onclick="location.href='/singlepost/<%= post.id %>';">
+                <img src="/images/Account2.png" alt="Account">
+                <p>
+                    <%= post.date %>
+                </p>
+            </div>
+            <div class="post-content" onclick="location.href='/singlepost/<%= post.id %>';">
+                <img src=<%= post.picture %> alt="Penguins">
+                <p>
+                    <%= post.body %>
+                </p>
+            </div>
+            <div class="like-button">
+                <input type="image" class="addLike" onclick="add1Likes(id)" id="<%= post.id %>" name="Like" src="/images/Like.png"
+                       alt="Like"
+                       data-id="<%= post.id %>">
+                <p class="likes" id="nrID<%= post.id %>">
+                    <%= post.likes %>
+                </p>
+            </div>
+            <script>
+                function add1Likes(id) {
+                    document.getElementById("nrID" + id).innerHTML++;
 
-                            <%- include('./partials/footer.ejs') %>
+                    const endpoint = `/posts/${id}`;
+                    fetch(endpoint, {
+                        method: 'PUT',
+                    });
+
+                    document.getElementById(id).disabled = true;
+                }
+
+            </script>
+        </div>
+
+    <% }) %>
+<% } else { %>
+    <div class="noPosts">
+        <p>You have no posts at the moment</p>
+        <img src="/images/noPosts.png" alt="SadPenguin">
+    </div>
+<% } %>
+
+<%- include('./partials/footer.ejs') %>
 </body>
 
 </html>
